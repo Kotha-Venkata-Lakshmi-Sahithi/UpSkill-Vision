@@ -1,0 +1,116 @@
+/* File: SignUp.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #eaf6fb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #d8ecff;
+    width: 80%;
+    max-width: 900px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    display: flex;
+}
+
+.form-section {
+    width: 60%;
+    padding: 20px;
+}
+
+.image-section {
+    width: 40%;
+    background: url('https://www.talintinternational.com/wp-content/uploads/2023/07/Employee-Skill-Training-Upskilling-Reskilling-and-Beyond-social-image-1.png') no-repeat center center/cover;
+}
+
+h1 {
+    text-align: center;
+    color: #0056a6;
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+
+.tab-container {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.tab {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+.tab:hover {
+    background-color: #0056a6;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 0.9em;
+}
+
+.remember-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.remember-container input {
+    margin-right: 10px;
+}
+
+.button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #0056a6;
+}
+
+.signin-link {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 0.9em;
+}
+
+.signin-link a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.signin-link a:hover {
+    text-decoration: underline;
+}
+
+.error {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
