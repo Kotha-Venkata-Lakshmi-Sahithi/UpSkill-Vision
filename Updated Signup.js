@@ -28,7 +28,7 @@ const SignUp = () => {
 
         setError('');
         alert('Account created successfully!');
-        // Proceed with form submission
+        
     };
 
     return (
