@@ -1,4 +1,3 @@
-/* File: SignUp.css */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -107,4 +106,10 @@ input {
 
 .signin-link a:hover {
     text-decoration: underline;
+}
+
+.error {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
 }
