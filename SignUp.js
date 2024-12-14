@@ -1,18 +1,35 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './SignUp.css';
 
 const SignUp = () => {
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [mobile, setMobile] = useState('');
+    const [country, setCountry] = useState('');
+    const [userType, setUserType] = useState('learner'); 
     const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
+    const navigate = useNavigate();
 
     const validatePassword = (pwd) => {
         const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
         return regex.test(pwd);
     };
 
+    const validateEmail = (email) => {
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(email);
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        if (!validateEmail(email)) {
+            setError('Please enter a valid email address.');
+            return;
+        }
 
         if (!validatePassword(password)) {
             setError(
@@ -27,8 +44,20 @@ const SignUp = () => {
         }
 
         setError('');
-        alert('Account created successfully!');
+        setSuccess('Account created successfully! Redirecting...');
+
         
+        setTimeout(() => {
+            if (userType === 'learner') {
+                navigate('/learner'); 
+            } else if (userType === 'instructor') {
+                navigate('/instructor'); 
+            } else if (userType === 'manager') {
+                navigate('/manager'); 
+            } else if (userType === 'hr-admin') {
+                navigate('/hr-admin'); 
+            }
+        }, 2000); 
     };
 
     return (
@@ -39,13 +68,39 @@ const SignUp = () => {
                     Create a user account for further works or to access the courses
                 </p>
                 <div className="tab-container">
-                    <button className="tab">LEARNER</button>
-                    <button className="tab">MANAGER</button>
-                    <button className="tab">HR ADMIN</button>
-                    <button className="tab">INSTRUCTOR</button>
+                    <button
+                        className={`tab ${userType === 'learner' ? 'active' : ''}`}
+                        onClick={() => setUserType('learner')}
+                    >
+                        LEARNER
+                    </button>
+                    <button
+                        className={`tab ${userType === 'manager' ? 'active' : ''}`}
+                        onClick={() => setUserType('manager')}
+                    >
+                        MANAGER
+                    </button>
+                    <button
+                        className={`tab ${userType === 'hr-admin' ? 'active' : ''}`}
+                        onClick={() => setUserType('hr-admin')}
+                    >
+                        HR ADMIN
+                    </button>
+                    <button
+                        className={`tab ${userType === 'instructor' ? 'active' : ''}`}
+                        onClick={() => setUserType('instructor')}
+                    >
+                        INSTRUCTOR
+                    </button>
                 </div>
                 <form onSubmit={handleSubmit}>
-                    <input type="email" placeholder="Email address" required />
+                    <input
+                        type="email"
+                        placeholder="Email address"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
                     <input
                         type="password"
                         placeholder="Password"
@@ -60,18 +115,31 @@ const SignUp = () => {
                         onChange={(e) => setConfirmPassword(e.target.value)}
                         required
                     />
-                    <input type="tel" placeholder="Mobile Number" required />
-                    <input type="text" placeholder="Country" required />
+                    <input
+                        type="tel"
+                        placeholder="Mobile Number"
+                        value={mobile}
+                        onChange={(e) => setMobile(e.target.value)}
+                        required
+                    />
+                    <input
+                        type="text"
+                        placeholder="Country"
+                        value={country}
+                        onChange={(e) => setCountry(e.target.value)}
+                        required
+                    />
                     <div className="remember-container">
                         <input type="checkbox" id="remember" />
                         <label htmlFor="remember">Remember me</label>
                     </div>
                     {error && <p className="error">{error}</p>}
+                    {success && <p className="success">{success}</p>}
                     <button type="submit" className="button">
                         Get Started
                     </button>
                     <div className="signin-link">
-                        Already a user? <a href="/Home">Sign in</a>
+                        Already a user? <a href={`/${userType}`}>Sign in</a>
                     </div>
                 </form>
             </div>
