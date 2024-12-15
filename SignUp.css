@@ -1,3 +1,4 @@
+/* File: SignUp.css */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -112,4 +113,30 @@ input {
     color: red;
     font-size: 14px;
     margin-top: 5px;
+}
+.tab-container {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.tab {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.tab:hover {
+    background-color: #0056a6;
+}
+
+.tab.active {
+    background-color: #34c759; /* Active background color */
+    color: white; /* Active text color */
+    font-weight: bold;
 }
