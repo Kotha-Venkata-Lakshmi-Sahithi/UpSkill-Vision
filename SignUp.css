@@ -1,4 +1,4 @@
-/* File: SignUp.css */
+/* SignUp.css */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -46,15 +46,23 @@ h1 {
 .tab {
     background-color: #007bff;
     color: white;
-    padding: 10px 20px;
+    padding: 12px 24px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 0.9em;
+    font-size: 1em;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .tab:hover {
     background-color: #0056a6;
+}
+
+.tab.active {
+    background-color: #0e6e38; /* Active background color */
+    color: rgb(243, 242, 242); /* Active text color */
+    font-weight: bold;
+    transform: scale(1.1); /* Increase button size when active */
 }
 
 form {
@@ -68,6 +76,12 @@ input {
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 0.9em;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
 .remember-container {
@@ -83,15 +97,17 @@ input {
 .button {
     background-color: #007bff;
     color: white;
-    padding: 10px;
+    padding: 12px 24px;
     border: none;
     border-radius: 5px;
     font-size: 1em;
     cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .button:hover {
     background-color: #0056a6;
+    transform: scale(1.05);
 }
 
 .signin-link {
@@ -114,29 +130,13 @@ input {
     font-size: 14px;
     margin-top: 5px;
 }
-.tab-container {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 20px;
-}
 
-.tab {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 0.9em;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.tab:hover {
-    background-color: #0056a6;
-}
-
-.tab.active {
-    background-color: #34c759; /* Active background color */
-    color: white; /* Active text color */
-    font-weight: bold;
+/* Active tab effect animation */
+@keyframes activeTab {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.1);
+    }
 }
