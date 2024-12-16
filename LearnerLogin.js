@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './Learner.css';
+import './Transitions.css';
 
 const LearnerLogin = ({ onLogin }) => {
     const [email, setEmail] = useState('');

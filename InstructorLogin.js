@@ -18,29 +18,36 @@ function InstructorLogin() {
     };
 
     return (
-        <div className="login-container">
-            <h1>Instructor Login</h1>
-            <form onSubmit={handleLogin}>
-                <label>Email</label>
-                <input 
-                    type="email" 
-                    value={email} 
-                    onChange={(e) => setEmail(e.target.value)} 
-                    placeholder="Enter your email" 
-                    required 
-                />
-                <label>Password</label>
-                <input 
-                    type="password" 
-                    value={password} 
-                    onChange={(e) => setPassword(e.target.value)} 
-                    placeholder="Enter your password" 
-                    required 
-                />
-                <button type="submit">Login</button>
-            </form>
+        <div className="login-wrapper">
+            <div className="login-container">
+                <h1>Instructor Login</h1>
+                <form onSubmit={handleLogin}>
+                    <label>Email</label>
+                    <input 
+                        type="email" 
+                        value={email} 
+                        onChange={(e) => setEmail(e.target.value)} 
+                        placeholder="Enter your email" 
+                        required 
+                    />
+                    <label>Password</label>
+                    <input 
+                        type="password" 
+                        value={password} 
+                        onChange={(e) => setPassword(e.target.value)} 
+                        placeholder="Enter your password" 
+                        required 
+                    />
+                    <div className="remember-me">
+                        <input type="checkbox" id="remember" />
+                        <label htmlFor="remember">Remember me</label>
+                    </div>
+                    <button type="submit">Login</button>
+                </form>
+            </div>
         </div>
     );
 }
 
 export default InstructorLogin;
+
