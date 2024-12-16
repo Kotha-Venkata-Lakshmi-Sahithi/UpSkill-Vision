@@ -20,14 +20,14 @@ const SignUp = () => {
     const location = useLocation(); // To track the current route
 
     useEffect(() => {
-        // Check the current URL path to set the active tab based on the route
+    
         const path = location.pathname;
         if (path.includes('learner')) {
             setUserType('learner');
         } else if (path.includes('manager')) {
             setUserType('manager');
-        } else if (path.includes('hr-admin')) {
-            setUserType('hr-admin');
+        } else if (path.includes('HR')) {
+            setUserType('HR');
         } else if (path.includes('instructor')) {
             setUserType('instructor');
         }
@@ -99,7 +99,7 @@ const SignUp = () => {
                     } else if (userType === 'manager') {
                         navigate('/manager');
                     } else if (userType === 'hradmin') {
-                        navigate('/hradmin');
+                        navigate('/hr');
                     }
                 }, 2000);
             } else {
@@ -133,7 +133,7 @@ const SignUp = () => {
                         </button>
                         <button
                             className={`tab ${userType === 'hradmin' ? 'active' : ''}`}
-                            onClick={() => setUserType('hradmin')}
+                            onClick={() => setUserType('hr')}
                         >
                             HR ADMIN
                         </button>
