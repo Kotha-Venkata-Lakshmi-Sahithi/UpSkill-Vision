@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './InstructorLogin.css';
 
 function InstructorLogin() {
@@ -9,7 +9,6 @@ function InstructorLogin() {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        // Dummy validation
         if (email === 'kothasahithi15@gmail.com' && password === 'sahi') {
             navigate('/instructor-dashboard'); // Redirect to dashboard
         } else {
@@ -38,16 +37,15 @@ function InstructorLogin() {
                         placeholder="Enter your password" 
                         required 
                     />
-                    <div className="remember-me">
-                        <input type="checkbox" id="remember" />
-                        <label htmlFor="remember">Remember me</label>
-                    </div>
+        
                     <button type="submit">Login</button>
                 </form>
+                <div className="forgot-password-link">
+                    <Link to="/forgot-password">Forgot Password?</Link>
+                </div>
             </div>
         </div>
     );
 }
 
 export default InstructorLogin;
-

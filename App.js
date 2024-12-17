@@ -9,6 +9,7 @@ import LearnerLogin from './components/LearnerLogin';
 import LearnerDashboard from './components/LearnerDashboard';
 import  HRLogin from './components/HRLogin'; 
 import  HRDashboard from './components/HRDashboard';
+import ForgotPassword from './components/ForgotPassword';
 import './App.css';
 
 function App() {
@@ -23,8 +24,9 @@ function App() {
         <Route path="/manager-dashboard" element={<ManagerDashboard />} />
         <Route path="/learner" element={<LearnerLogin />} />
         <Route path="/learner-dashboard" element={<LearnerDashboard />} />
-        <Route path="/hr" element={<HRLogin />} />
+        <Route path="/HR" element={<HRLogin />} />
         <Route path="/hr-dashboard" element={<HRDashboard />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
       </Routes>
     </Router>
   );

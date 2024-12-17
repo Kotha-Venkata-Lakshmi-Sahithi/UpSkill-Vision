@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './Manager.css';
 
 const ManagerLogin = () => {
@@ -10,7 +10,6 @@ const ManagerLogin = () => {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        // Dummy validation
         if (email === 'kothasahithi15@gmail.com' && password === 'sahi') {
             navigate('/manager-dashboard');
         } else {
@@ -41,6 +40,9 @@ const ManagerLogin = () => {
                 {error && <p className="error">{error}</p>}
                 <button type="submit">Login</button>
             </form>
+            <div className="forgot-password-link">
+                <Link to="/forgot-password">Forgot Password?</Link>
+            </div>
         </div>
     );
 };
@@ -86,5 +88,3 @@ const ManagerDashboard = () => {
 };
 
 export { ManagerLogin, ManagerDashboard };
-
-

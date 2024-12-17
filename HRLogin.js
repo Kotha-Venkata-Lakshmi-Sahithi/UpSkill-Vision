@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './HrAdmin.css';
 
-// HR Login Component
 const HRLogin = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -47,6 +46,9 @@ const HRLogin = () => {
                 {error && <p className="error">{error}</p>}
                 <button type="submit">Login</button>
             </form>
+            <div className="forgot-password-link">
+                <Link to="/forgot-password">Forgot Password?</Link>
+            </div>
         </div>
     );
 };

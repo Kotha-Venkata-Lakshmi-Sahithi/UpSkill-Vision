@@ -2,20 +2,25 @@ import React, { useState } from 'react';
 import { useNavigate, BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './Learner.css';
 import './Transitions.css';
+import ForgotPassword from './ForgotPassword';
 
 const LearnerLogin = ({ onLogin }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const navigate = useNavigate();
 
     const handleLogin = (e) => {
         e.preventDefault();
-        // Dummy credentials
         if (email === 'kothasahithi15@gmail.com' && password === 'sahi') {
             onLogin();
         } else {
             setError('Invalid email or password!');
         }
+    };
+
+    const handleForgotPassword = () => {
+        navigate('/forgot-password');
     };
 
     return (
@@ -41,6 +46,9 @@ const LearnerLogin = ({ onLogin }) => {
                 {error && <p className="error">{error}</p>}
                 <button type="submit">Login</button>
             </form>
+            <div className="forgot-password-link">
+                <button onClick={handleForgotPassword}>Forgot Password?</button>
+            </div>
         </div>
     );
 };
@@ -121,6 +129,7 @@ const Learner = () => {
                 element={<LearnerLogin onLogin={handleLoginSuccess} />}
             />
             <Route path="/learner-dashboard" element={<LearnerDashboard />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
         </Routes>
     );
 };
