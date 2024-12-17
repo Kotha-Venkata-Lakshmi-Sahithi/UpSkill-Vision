@@ -98,7 +98,7 @@ const SignUp = () => {
                         navigate('/instructor');
                     } else if (userType === 'manager') {
                         navigate('/manager');
-                    } else if (userType === 'hradmin') {
+                    } else if (userType === 'HR') {
                         navigate('/hr');
                     }
                 }, 2000);
@@ -132,8 +132,8 @@ const SignUp = () => {
                             MANAGER
                         </button>
                         <button
-                            className={`tab ${userType === 'hradmin' ? 'active' : ''}`}
-                            onClick={() => setUserType('hr')}
+                            className={`tab ${userType === 'HR' ? 'active' : ''}`}
+                            onClick={() => setUserType('HR')}
                         >
                             HR ADMIN
                         </button>
