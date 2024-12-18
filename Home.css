@@ -1,172 +1,51 @@
-
+/* General Styles */
 body {
     font-family: Arial, sans-serif;
     background-color: #b3d9ff;
     margin: 0;
-    padding: 0;
+    padding: 20;
     display: flex;
     justify-content: center;
-    align-items: center;/* General container transitions */
-    .fade-in {
-        opacity: 0;
-        animation: fadeIn 0.5s ease forwards;
-    }
-    
-    .fade-out {
-        opacity: 1;
-        animation: fadeOut 0.5s ease forwards;
-    }
-    
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-    
-    @keyframes fadeOut {
-        from {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        to {
-            opacity: 0;
-            transform: translateY(-20px);
-        }
-    }
-    
-    /* Login container styles */
-    .login-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        background-color: #b3d9f9;
-    }
-    
-    .login-container h1 {
-        margin-bottom: 20px;
-        color: #003366;
-        font-size: 24px;
-    }
-    
-    form {
-        display: flex;
-        flex-direction: column;
-        background: #e6f2ff;
-        padding: 30px;
-        border-radius: 10px;
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-        width: 300px;
-    }
-    
-    form label {
-        margin-bottom: 8px;
-        color: #003366;
-        font-weight: bold;
-    }
-    
-    form input {
-        margin-bottom: 15px;
-        padding: 10px;
-        border-radius: 5px;
-        border: 1px solid #ccc;
-        font-size: 14px;
-    }
-    
-    form .error {
-        color: red;
-        font-size: 12px;
-        margin-bottom: 10px;
-        text-align: center;
-    }
-    
-    form button {
-        background-color: #003366;
-        color: white;
-        border: none;
-        padding: 10px;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 16px;
-    }
-    
-    form button:hover {
-        background-color: #001f4d;
-    }
-    
-    
-    .dashboard {
-        display: flex;
-        flex-direction: row;
-        height: 100vh;
-        opacity: 0;
-        animation: fadeIn 0.5s ease forwards;
-    }
-    
-    
-    .sidebar {
-        width: 200px;
-        background-color: #003366;
-        color: white;
-        padding: 20px;
-    }
-    
-    .sidebar .logo {
-        font-size: 20px;
-        font-weight: bold;
-        margin-bottom: 20px;
-    }
-    
-    .sidebar a {
-        color: white;
-        text-decoration: none;
-        display: block;
-        margin: 10px 0;
-        font-size: 14px;
-    }
-    
-    .sidebar a:hover {
-        text-decoration: underline;
-    }
-    
-    
-    .main-content {
-        flex: 1;
-        padding: 20px;
-        background-color: #f1f5f8;
-    }
-    
-    .cards {
-        display: flex;
-        gap: 20px;
-    }
-    
-    .card {
-        padding: 20px;
-        background: #ffffff;
-        border-radius: 8px;
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    
-    .card:hover {
-        transform: scale(1.05);
-        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
-    }
-    
-    height: 100vh;
-    overflow: hidden;
+    align-items: center;
+    height: 50vh;
 }
 
+/* General Animations */
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 0.5s ease forwards;
+}
 
+.fade-out {
+    opacity: 1;
+    animation: fadeOut 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+/* Container Styles */
 .container {
-    background-color: #e6f2ff;
+    background-color: #4471a1;
     border-radius: 10px;
     padding: 20px;
     width: 90%;
@@ -179,7 +58,6 @@ body {
     animation: fadeInSlide 0.8s ease-in forwards;
 }
 
-
 @keyframes fadeInSlide {
     from {
         opacity: 0;
@@ -191,11 +69,13 @@ body {
     }
 }
 
-
+/* Form Section */
 .form-section {
     flex: 1;
     margin-right: 20px;
     animation: slideInLeft 0.8s ease-in forwards;
+    opacity: 1; /* Ensure it is fully visible after animation */
+    visibility: visible; /* Ensure it's not hidden */
 }
 
 @keyframes slideInLeft {
@@ -216,30 +96,51 @@ body {
     text-align: center;
 }
 
-
-.role-buttons {
+form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    margin-bottom: 20px;
+    background: #a8aeb4;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    width: 300px;
+    
 }
 
-.role-buttons button {
-    background-color: #4da6ff;
-    border: none;
-    padding: 12px 25px;
+form label {
+    margin-bottom: 8px;
+    color: #003366;
+    font-weight: bold;
+}
+
+form input {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+form .error {
+    color: red;
+    font-size: 12px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+form button {
+    background-color: #003366;
     color: white;
-    border-radius: 8px;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-.role-buttons button:hover {
-    background-color: #0059b3;
-    transform: scale(1.05);
+form button:hover {
+    background-color: #001f4d;
 }
-
 
 .signin {
     margin-top: 10px;
@@ -259,13 +160,15 @@ body {
     text-decoration: underline;
 }
 
-
+/* Image Section */
 .image-section {
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
     animation: slideInRight 0.8s ease-in forwards;
+    opacity: 50; /* Ensure visibility */
+    visibility: visible; /* Ensure it's not hidden */
 }
 
 @keyframes slideInRight {
@@ -279,13 +182,41 @@ body {
     }
 }
 
-.image-section img {
+/* Image Section */
+.image-section {
+    flex: 1;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    height: 60%;
+    animation: slideInRight 0.8s ease-in forwards;
+  }
+  
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .image-section img {
     width: 100%;
     max-width: 350px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+  }
+  
+  .image-section img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  }
+  
+
 
 .image-section img:hover {
     transform: scale(1.05);
