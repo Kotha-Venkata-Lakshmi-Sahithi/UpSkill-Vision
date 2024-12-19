@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate, BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import './Learner.css';
+import './Manager.css';
 
-const LearnerLogin = ({ onLogin }) => {
+const ManagerLogin = ({ onLogin }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -41,7 +41,7 @@ const LearnerLogin = ({ onLogin }) => {
 
     return (
         <div className="login-container">
-            <h1>Learner Login</h1>
+            <h1>Manager Login</h1>
             <form onSubmit={handleLogin}>
                 <label>Email</label>
                 <input
@@ -69,7 +69,7 @@ const LearnerLogin = ({ onLogin }) => {
     );
 };
 
-const LearnerDashboard = () => {
+const ManagerDashboard = () => {
     return (
         <>
             <header>
@@ -83,7 +83,7 @@ const LearnerDashboard = () => {
             </header>
             <div className="container">
                 <div className="welcome">
-                    <h2>Welcome Back, Learner</h2>
+                    <h2>Welcome Back, Manager</h2>
                 </div>
                 <div className="cards">
                     <div className="card">
@@ -129,24 +129,24 @@ const LearnerDashboard = () => {
     );
 };
 
-const Learner = () => {
+const Manager = () => {
     const navigate = useNavigate();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const handleLoginSuccess = () => {
         setIsLoggedIn(true);
-        navigate('/learner-dashboard');
+        navigate('/manager-dashboard')
     };
 
     return (
         <Routes>
             <Route
                 path="/"
-                element={<LearnerLogin onLogin={handleLoginSuccess} />}
+                element={<ManagerLogin onLogin={handleLoginSuccess} />}
             />
-            <Route path="/learner-dashboard" element={<LearnerDashboard />} />
+            <Route path="/manager-dashboard" element={<ManagerDashboard />} />
         </Routes>
     );
 };
 
-export default Learner;
+export default Manager;

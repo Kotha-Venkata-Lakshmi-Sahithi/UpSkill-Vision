@@ -1,146 +1,176 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './Forgetpassword.css';
+import axios from 'axios';
 
 const ForgotPassword = () => {
-    const [identifier, setIdentifier] = useState('test@example.com'); // Default email or phone
-    const [otp, setOtp] = useState('123456'); // Default OTP
-    const [newPassword, setNewPassword] = useState('defaultPass123'); // Default new password
-    const [confirmPassword, setConfirmPassword] = useState('defaultPass123'); // Default confirm password
-    const [message, setMessage] = useState('');
-    const [isOtpSent, setIsOtpSent] = useState(false);
-    const [isOtpVerified, setIsOtpVerified] = useState(false);
-    const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [otp, setOtp] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmNewPassword, setConfirmNewPassword] = useState('');
+  const [step, setStep] = useState('requestOTP'); // 'requestOTP' or 'resetPassword'
+  const [message, setMessage] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
-    const handleSendOtp = async () => {
-        try {
-            const response = await fetch('http://127.0.0.1:5000/send-otp', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ identifier })
-            });
-            const data = await response.json();
+  // Request OTP
+  const handleRequestOTP = async (e) => {
+    e.preventDefault();
+    setMessage('');
+    setError('');
+    setLoading(true);
 
-            if (data.status === 'success') {
-                setIsOtpSent(true);
-                setMessage('OTP sent to your email/phone.');
-            } else {
-                setMessage('No account found with this email/phone.');
-            }
-        } catch (error) {
-            setMessage('Error connecting to the server. Please try again later.');
-        }
-    };
+    try {
+      const response = await axios.post('http://127.0.0.1:5000/forgot-password', { email });
+      setMessage(response.data.message);
+      setStep('resetPassword');
+    } catch (err) {
+      if (err.response && err.response.data && err.response.data.error) {
+        setError(err.response.data.error);
+      } else {
+        setError('An unexpected error occurred. Please try again later.');
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    const handleVerifyOtp = async () => {
-        try {
-            const response = await fetch('http://127.0.0.1:5000/verify-otp', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ identifier, otp })
-            });
-            const data = await response.json();
+  // Reset Password
+  const handleResetPassword = async (e) => {
+    e.preventDefault();
+    setMessage('');
+    setError('');
+    setLoading(true);
 
-            if (data.status === 'success') {
-                setIsOtpVerified(true);
-                setMessage('OTP verified! Please set your new password.');
-            } else {
-                setMessage('Invalid OTP. Please try again.');
-            }
-        } catch (error) {
-            setMessage('Error connecting to the server. Please try again later.');
-        }
-    };
+    try {
+      const response = await axios.post('http://127.0.0.1:5000/reset-password', {
+        email,
+        otp,
+        new_password: newPassword,
+        confirm_new_password: confirmNewPassword,
+      });
+      setMessage(response.data.message);
+      setStep('requestOTP'); // Reset the step on success
+    } catch (err) {
+      if (err.response && err.response.data && err.response.data.error) {
+        setError(err.response.data.error);
+      } else {
+        setError('An unexpected error occurred. Please try again later.');
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    const handleResetPassword = async () => {
-        if (newPassword !== confirmPassword) {
-            setMessage('Passwords do not match!');
-            return;
-        }
+  return (
+    <div className="forgot-password-container" style={styles.container}>
+      <h2>Forgot Password</h2>
 
-        try {
-            const response = await fetch('http://127.0.0.1:5000/reset-password', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ identifier, newPassword })
-            });
-            const data = await response.json();
+      {step === 'requestOTP' && (
+        <form onSubmit={handleRequestOTP} style={styles.form}>
+          <div style={styles.inputGroup}>
+            <label htmlFor="email">Email:</label>
+            <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              style={styles.input}
+            />
+          </div>
+          <button type="submit" style={styles.button} disabled={loading}>
+            {loading ? 'Sending...' : 'Send OTP'}
+          </button>
+        </form>
+      )}
 
-            if (data.status === 'success') {
-                setMessage('Password reset successful!');
-                setTimeout(() => {
-                    navigate('/');  
-                }, 2000);
-            } else {
-                setMessage('Password reset failed. Please try again.');
-            }
-        } catch (error) {
-            setMessage('Error connecting to the server. Please try again later.');
-        }
-    };
+      {step === 'resetPassword' && (
+        <form onSubmit={handleResetPassword} style={styles.form}>
+          <div style={styles.inputGroup}>
+            <label htmlFor="otp">OTP:</label>
+            <input
+              type="text"
+              id="otp"
+              value={otp}
+              onChange={(e) => setOtp(e.target.value)}
+              required
+              style={styles.input}
+            />
+          </div>
+          <div style={styles.inputGroup}>
+            <label htmlFor="newPassword">New Password:</label>
+            <input
+              type="password"
+              id="newPassword"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+              required
+              style={styles.input}
+            />
+          </div>
+          <div style={styles.inputGroup}>
+            <label htmlFor="confirmNewPassword">Confirm New Password:</label>
+            <input
+              type="password"
+              id="confirmNewPassword"
+              value={confirmNewPassword}
+              onChange={(e) => setConfirmNewPassword(e.target.value)}
+              required
+              style={styles.input}
+            />
+          </div>
+          <button type="submit" style={styles.button} disabled={loading}>
+            {loading ? 'Resetting...' : 'Reset Password'}
+          </button>
+        </form>
+      )}
 
-    return (
-        <div className="forgot-password-container">
-            <h1>Forgot Password</h1>
-            
-            {!isOtpSent && (
-                <div>
-                    <label>Email or Mobile Number</label>
-                    <input
-                        type="text"
-                        value={identifier}
-                        onChange={(e) => setIdentifier(e.target.value)}
-                        placeholder="Enter your email or mobile number"
-                        required
-                    />
-                    <button onClick={handleSendOtp}>Send OTP</button>
-                </div>
-            )}
+      {message && <p style={styles.success}>{message}</p>}
+      {error && <p style={styles.error}>{error}</p>}
+    </div>
+  );
+};
 
-            {isOtpSent && !isOtpVerified && (
-                <div>
-                    <label>Enter OTP</label>
-                    <input
-                        type="text"
-                        value={otp}
-                        onChange={(e) => setOtp(e.target.value)}
-                        placeholder="Enter OTP"
-                        required
-                    />
-                    <button onClick={handleVerifyOtp}>Verify OTP</button>
-                </div>
-            )}
-
-            {isOtpVerified && (
-                <div>
-                    <label>New Password</label>
-                    <input
-                        type="password"
-                        value={newPassword}
-                        onChange={(e) => setNewPassword(e.target.value)}
-                        placeholder="Enter new password"
-                        required
-                    />
-                    <label>Confirm Password</label>
-                    <input
-                        type="password"
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
-                        placeholder="Confirm new password"
-                        required
-                    />
-                    <button 
-                        onClick={handleResetPassword} 
-                        disabled={newPassword !== confirmPassword || !newPassword || !confirmPassword}
-                    >
-                        Set Password
-                    </button>
-                </div>
-            )}
-
-            {message && <p className="message">{message}</p>}
-        </div>
-    );
+const styles = {
+  container: {
+    maxWidth: '400px',
+    margin: '50px auto',
+    padding: '20px',
+    border: '1px solid #ccc',
+    borderRadius: '8px',
+    boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)',
+    fontFamily: 'Arial, sans-serif',
+  },
+  form: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  inputGroup: {
+    marginBottom: '15px',
+  },
+  input: {
+    width: '100%',
+    padding: '10px',
+    marginTop: '5px',
+    borderRadius: '4px',
+    border: '1px solid #ccc',
+  },
+  button: {
+    padding: '10px',
+    backgroundColor: '#007BFF',
+    color: '#fff',
+    border: 'none',
+    borderRadius: '4px',
+    cursor: 'pointer',
+    fontSize: '16px',
+  },
+  success: {
+    color: 'green',
+    marginTop: '10px',
+  },
+  error: {
+    color: 'red',
+    marginTop: '10px',
+  },
 };
 
 export default ForgotPassword;

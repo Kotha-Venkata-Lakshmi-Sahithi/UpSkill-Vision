@@ -13,7 +13,7 @@ const Home = () => {
         <div className="role-buttons">
           <button onClick={() => navigate('/learner')}>LEARNER</button>
           <button onClick={() => navigate('/manager')}>MANAGER</button>
-          <button onClick={() => navigate('/HR')}>HR ADMIN</button>
+          <button onClick={() => navigate('/hr')}>HR ADMIN</button>
           <button onClick={() => navigate('/instructor')}>INSTRUCTOR</button>
         </div>
         <div className="signin">

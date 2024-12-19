@@ -26,8 +26,8 @@ const SignUp = () => {
             setUserType('learner');
         } else if (path.includes('manager')) {
             setUserType('manager');
-        } else if (path.includes('HR')) {
-            setUserType('HR');
+        } else if (path.includes('hr')) {
+            setUserType('hr');
         } else if (path.includes('instructor')) {
             setUserType('instructor');
         }
@@ -92,11 +92,11 @@ const SignUp = () => {
             if (response.ok) {
                 setSuccess(result.message);
                 setTimeout(() => {
-                    if (userType === 'learner') {
+                    if (userType === 'Learner') {
                         navigate('/learner');
-                    } else if (userType === 'instructor') {
+                    } else if (userType === 'Instructor') {
                         navigate('/instructor');
-                    } else if (userType === 'manager') {
+                    } else if (userType === 'Manager') {
                         navigate('/manager');
                     } else if (userType === 'HR') {
                         navigate('/hr');
@@ -120,14 +120,14 @@ const SignUp = () => {
                     </p>
                     <div className="tab-container">
                         <button
-                            className={`tab ${userType === 'learner' ? 'active' : ''}`}
-                            onClick={() => setUserType('learner')}
+                            className={`tab ${userType === 'Learner' ? 'active' : ''}`}
+                            onClick={() => setUserType('Learner')}
                         >
                             LEARNER
                         </button>
                         <button
-                            className={`tab ${userType === 'manager' ? 'active' : ''}`}
-                            onClick={() => setUserType('manager')}
+                            className={`tab ${userType === 'Manager' ? 'active' : ''}`}
+                            onClick={() => setUserType('Manager')}
                         >
                             MANAGER
                         </button>
@@ -138,8 +138,8 @@ const SignUp = () => {
                             HR ADMIN
                         </button>
                         <button
-                            className={`tab ${userType === 'instructor' ? 'active' : ''}`}
-                            onClick={() => setUserType('instructor')}
+                            className={`tab ${userType === 'Instructor' ? 'active' : ''}`}
+                            onClick={() => setUserType('Instructor')}
                         >
                             INSTRUCTOR
                         </button>
