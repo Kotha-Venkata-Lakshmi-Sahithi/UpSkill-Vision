@@ -34,7 +34,7 @@ const SignUp = () => {
     }, [location]);
 
     const validatePassword = (pwd) => {
-        const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        const regex = /^(?=.[a-z])(?=.[A-Z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/;
         return regex.test(pwd);
     };
 
@@ -77,7 +77,7 @@ const SignUp = () => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    full_name: `${firstName} ${lastName}`,
+                    full_name: ${firstName} ${lastName},
                     email,
                     password,
                     confirm_password: confirmPassword,
@@ -120,25 +120,25 @@ const SignUp = () => {
                     </p>
                     <div className="tab-container">
                         <button
-                            className={`tab ${userType === 'Learner' ? 'active' : ''}`}
+                            className={tab ${userType === 'Learner' ? 'active' : ''}}
                             onClick={() => setUserType('Learner')}
                         >
                             LEARNER
                         </button>
                         <button
-                            className={`tab ${userType === 'Manager' ? 'active' : ''}`}
+                            className={tab ${userType === 'Manager' ? 'active' : ''}}
                             onClick={() => setUserType('Manager')}
                         >
                             MANAGER
                         </button>
                         <button
-                            className={`tab ${userType === 'HR' ? 'active' : ''}`}
+                            className={tab ${userType === 'HR' ? 'active' : ''}}
                             onClick={() => setUserType('HR')}
                         >
                             HR ADMIN
                         </button>
                         <button
-                            className={`tab ${userType === 'Instructor' ? 'active' : ''}`}
+                            className={tab ${userType === 'Instructor' ? 'active' : ''}}
                             onClick={() => setUserType('Instructor')}
                         >
                             INSTRUCTOR
@@ -201,7 +201,7 @@ const SignUp = () => {
                             Get Started
                         </button>
                         <div className="signin-link">
-                            Already a user? <a href={`/${userType}`}>Sign in</a>
+                            Already a user? <a href={/${userType}}>Sign in</a>
                         </div>
                     </form>
                 </div>
